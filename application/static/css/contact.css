@@ -1,0 +1,87 @@
+/* 
+ * Portfolio Website Contact Page Styles
+ * Styles specific to the contact page
+ */
+
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.contact-info {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+.social-connect {
+    margin-top: var(--spacing-lg);
+}
+
+.social-connect .social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.social-connect .social-link {
+    width: 50px;
+    height: 50px;
+    background-color: var(--gray-light);
+    color: var(--dark);
+}
+
+.social-connect .social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.section-title.connect-title {
+    margin-top: var(--spacing-xxl);
+}
+.success-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--success);
+    margin-bottom: var(--spacing-lg);
+}
+
+.success-title {
+    color: var(--success);
+    margin-bottom: var(--spacing-md);
+}
+
+.success-container p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-muted);
+}
+
+.success-actions {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: var(--spacing-lg);
+    }
+    .success-actions {
+        flex-direction: column;
+    }
+}
+

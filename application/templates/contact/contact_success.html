@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Message Sent Successfully - Portfolio{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="success-container animate-on-scroll">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="success-title">Message Sent Successfully!</h1>
+            <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
+            <div class="success-actions">
+                <a href="{% url 'index' %}" class="btn">Return to Homepage</a>
+                <a href="{% url 'project_list' %}" class="btn btn-outline">View My Projects</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

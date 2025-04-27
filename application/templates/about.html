@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Me - Portfolio{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h1>About Me</h1>
+        </div>
+        
+        <div class="about-content">
+            <div class="animate-on-scroll">
+                <h2>Hi, I'm Dennis</h2>
+                <p>
+                    I am a passionate software developer with an expertise in web development. 
+                    My journey into the world of IT began by building custom PCs for family and friends. At the age of 17, 
+                    I started learning to code with Java, which sparked my deep interest in software development. 
+                    During my studies in Business Informatics and my work as a System Administrator, I expanded my knowledge of the IT landscape and learned 
+                    how to leverage technology to optimize and enhance business processes. 
+                    I am driven by a continuous desire to create, innovate, and deliver impactful digital solutions.
+                </p>
+                
+                <h3>My Skills</h3>
+                <div class="skills-grid animate-on-scroll">
+                    <div class="skill-category">
+                        <h4>Frontend</h4>
+                        <ul>
+                            <li>HTML5/CSS</li>
+                            <li>Responsive Design</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Backend</h4>
+                        <ul>
+                            <li>Java</li>
+                            <li>Python/Django</li>
+                            <li>PHP/Smarty</li>
+                            <li>PostgreSQL</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Tools & DevOps</h4>
+                        <ul>
+                            <li>Git</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p>
+                    I am currently pursuing my studies in Business Informatics at Hochschule Bochum while working as 
+                    a System Administrator at a leading company specializing in identity-driven cybersecurity. 
+                    I am highly motivated by new challenges and continuously seek opportunities to expand my knowledge and develop new skills.
+                </p>
+                <p>
+                    I believe in continuous learning and regularly expand my skillset to keep up with the latest technologies and best practices in the industry, 
+                    especially in AI and cloud technologies.
+                </p>
+                
+                <div class="about-cta animate-on-scroll">
+                    <a href="{% url 'contact_form' %}" class="btn">Contact Me</a>
+                    <a href="{% url 'project_list' %}" class="btn btn-outline">View My Work</a>
+                </div>
+            </div>
+            
+            <div class="about-image animate-on-scroll">
+                <img src="{% static 'images/about-me.jpg' %}" alt="Dennis Czernicki">
+                
+                <div class="about-social">
+                    <a href="https://github.com/Deczer03" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dennis-czernicki-652987316/" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://x.com/billgates?lang=de" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

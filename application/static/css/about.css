@@ -1,0 +1,85 @@
+/* 
+ * Portfolio Website About Page Styles
+ * Styles specific to the about page
+ */
+
+.about-content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--spacing-xxl);
+    align-items: start;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.skill-category h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.skill-category ul {
+    list-style: disc;
+    padding-left: var(--spacing-lg);
+}
+
+.skill-category li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.about-cta {
+    margin-top: var(--spacing-xl);
+}
+
+.about-cta .btn-outline {
+    margin-left: var(--spacing-md);
+}
+
+.about-social {
+    margin-top: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--gray-light);
+    border-radius: 50%;
+    color: var(--dark);
+    margin: 0 var(--spacing-xs);
+    transition: all var(--transition-fast);
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        margin-top: var(--spacing-xl);
+        max-width: 500px;
+        justify-self: center;
+    }
+}
+
