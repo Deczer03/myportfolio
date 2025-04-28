@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -79,12 +80,23 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Get database configuration from DATABASE_URL environment variable if available
+# This is used for Render deployment with disk persistence
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL and DATABASE_URL.startswith('sqlite:////data/'):
+    # Production environment with persistent disk on Render
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
     }
-}
+else:
+    # Development environment - local SQLite database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -133,7 +145,14 @@ WHITENOISE_USE_FINDERS = True
 
 # Media files (Uploaded Images)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Set MEDIA_ROOT based on environment
+if os.getenv('MEDIA_ROOT') and '/data/' in os.getenv('MEDIA_ROOT'):
+    # Production environment with persistent disk on Render
+    MEDIA_ROOT = os.getenv('MEDIA_ROOT')
+else:
+    # Development environment - local media directory
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Logging configuration
 LOGGING = {
