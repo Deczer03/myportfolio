@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-of-=gyz3-0g9_9qnbfa-=8l5c803#kiwf$)(sl&g6!sn!bsl6-'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'myportfoliodeczerai.onrender.com']
 
 
 # Application definition
@@ -134,11 +139,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'deczerai1@gmail.com'
-EMAIL_HOST_PASSWORD = 'ucoc zgxk rsro qtxv'  # Make sure this is an app password, not your regular password
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')  # Use an environment variable for the app password
 
 # Contact form settings
-CONTACT_EMAIL_RECIPIENT = 'deczerai1@gmail.com'  # The email address that will receive contact form messages
+CONTACT_EMAIL_RECIPIENT = os.getenv('CONTACT_EMAIL_RECIPIENT')  # The email address that will receive contact form messages
 DEFAULT_FROM_EMAIL = 'noreply@deczerai.com'  # The from address in sent emails
 
 # SSL Certificate settings for email
