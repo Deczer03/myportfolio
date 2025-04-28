@@ -81,13 +81,12 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Get database configuration from DATABASE_URL environment variable if available
-# This is used for Render deployment with disk persistence
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-if DATABASE_URL and DATABASE_URL.startswith('sqlite:////data/'):
-    # Production environment with persistent disk on Render
+if DATABASE_URL:
+    # Production environment (Render)
     DATABASES = {
-        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+        'default': dj_database_url.parse(DATABASE_URL)
     }
 else:
     # Development environment - local SQLite database
