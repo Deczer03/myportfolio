@@ -7,17 +7,19 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.8
-      # The DATABASE_URL is defined below with the disk mount path
       - key: DJANGO_SECRET_KEY
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
+      - key: MEDIA_ROOT
+        value: /data/media
     disk:
       name: portfolio-data
       mountPath: /data
       sizeGB: 1
-    envVars:
-      - key: DATABASE_URL
-        value: sqlite:////data/db.sqlite3
-      - key: MEDIA_ROOT
-        value: /data/media
+
+    # Add PostgreSQL database service
+databases:
+  - name: myportfolio_db
+    plan: free
+    ipAllowList: []  # only allow internal connections
