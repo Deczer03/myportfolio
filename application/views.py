@@ -1,26 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Contact
+from .models import Contact, Project
 from django import forms
 
 # Create your views here.
 
-def index(request):
-    return render(request, 'index.html')
-
-def about(request):
-    return render(request, 'about.html')
-
-def project_list(request):
-    return render(request, 'project_list.html')
-
-def project_detail(request, pk):
-    return render(request, 'project_detail.html')
-
 class ContactForm(forms.ModelForm):
-    """Form for the contact model"""
     class Meta:
         model = Contact
         fields = ('name', 'email', 'message')
@@ -29,6 +16,31 @@ class ContactForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
             'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your Message', 'rows': 5}),
         }
+
+def index(request):
+    # Get up to 3 featured projects for the homepage
+    featured_projects = Project.objects.filter(is_featured=True)[:3]
+    return render(request, 'index.html', {
+        'featured_projects': featured_projects
+    })
+
+def about(request):
+    return render(request, 'about.html')
+
+def project_list(request):
+    # Get all projects, ordered by creation date
+    projects = Project.objects.all()
+    return render(request, 'project_list.html', {
+        'projects': projects
+    })
+
+def project_detail(request, pk):
+    # Get the specific project or return 404 if not found
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'project_detail.html', {
+        'project': project
+    })
+
 def contact_form(request):
     """View for handling the contact form."""
     if request.method == 'POST':

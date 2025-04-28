@@ -23,7 +23,7 @@
                         <div class="project-content">
                             <h3 class="project-title">{{ project.title }}</h3>
                             <div class="project-tech">
-                                {% for tech in project.technologies_used.split %}
+                                {% for tech in project.get_technologies_list %}
                                     <span class="tech-tag">{{ tech }}</span>
                                 {% endfor %}
                             </div>
