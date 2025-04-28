@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: myportfolio
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn myportfolio.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: DATABASE_URL
+        value: sqlite:///db.sqlite3
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+
